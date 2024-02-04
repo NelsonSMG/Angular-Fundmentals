@@ -12,7 +12,7 @@ export class EventService {
   }
 
   getEvent(id: number) {
-    return Events.find(event => event.id === id)
+    return Events.find(event => event.id == id)
   }
   
 
