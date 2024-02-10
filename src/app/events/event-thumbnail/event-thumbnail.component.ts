@@ -1,52 +1,47 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IEvent } from '../index';
 
 @Component({
   selector: 'app-event-thumbnail',
   templateUrl: './event-thumbnail.component.html',
-  styles: [
-    `
-      .green {color: #003300 !important}
-      .bold {font-weight: bold}
-      .pad-left { margin-left: 10px }
-      .well div { color: #bbb }
-      .thumbnail {min-height: 210px}
-    `
-  ]
+  styles: [`
+    .pad-left {
+      margin-left: 10px;
+    }  
+    .well div { color: #bbb; }
+    .thumbnail {
+      min-height: 210px;
+    }
+    .green {color: #003300 !important;}
+    .bold {font-weight: bold;}
+  `]
 })
 export class EventThumbnailComponent implements OnInit {
 
-  @Input() event: any
-  // @Output() eventClick = new EventEmitter()
-
-  someProperty: any = "some value"
+  @Input() event: IEvent | undefined
+  @Output() eventClick = new EventEmitter()
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  // handleClickMe() {
-  //   this.eventClick.emit('foo')
-  // }
-
-  // logFoo() {
-  //   console.log('foo')
-  // }
-
-  getStartTimeClass(){
-    const isEarlyStart = this.event?.time === '8:00 am' && this.event?.time === '8:00 am'
-
-    if (this.event?.time === '8:00 am' && this.event?.time === '8:00 am') {
-      return "green bold"
+  getStartTimeClass() {
+    //usar ngClass
+    if (this.event && this.event.time === '8:00 am') {
+      // return ' green bold'
+      return ['green', 'bold']
     }
-    return ""
+    return ''
+    // const isEarlyStart = this.event && this.event.time === '8:00 am'
     // return {green: isEarlyStart, bold: isEarlyStart}
   }
 
-  //if using ngStyle
-  getStartTimeStyle(){
-    if (this.event?.time === '8:00 am' && this.event?.time === '8:00 am') {
-      return {color: '#003300', 'font-weight': 'bold' }
+  getStartTimeStyle(): any {
+    //usar ngStyle
+    if (this.event && this.event.time === '8:00 am') {
+      // return ' green bold'
+      return {color: '#003300', 'font-weight': 'bold'}
     }
     return {}
   }
