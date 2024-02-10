@@ -36,10 +36,10 @@
       </div>
       <div class="form-group" [ngClass]="{'error': abstract.invalid && abstract.dirty}">
         <label for="abstract">Abstract:</label>
-        <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.required">Required</em>
-        <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.maxlength">Exceeded text</em>
-        <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.restrictedWords">
-          Restricetd words found: {{abstract.errors?.restrictedWords}}
+        <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.['required']">Required</em>
+        <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.['maxlength']">Exceeded text</em>
+        <em *ngIf="abstract.invalid && abstract.dirty && abstract.errors?.['restrictedWords']">
+          Restricetd words found: {{abstract.errors?.['restrictedWords']}}
         </em>
         <textarea id="abstract" formControlName="abstract" rows=3 class="form-control" placeholder="abstract..."></textarea>
       </div>
