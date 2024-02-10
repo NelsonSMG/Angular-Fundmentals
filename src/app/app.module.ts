@@ -2,33 +2,68 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { EventListComponent } from './events/event-list/event-list.component';
-import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnail.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
-import { EventService } from './events/shared/event.service';
-import { EventDetailsComponent } from './events/event-details/event-details/event-details.component';
-import { appRoutes } from './routes';
-import { RouterModule } from '@angular/router';
-import { CreateEventComponent } from './events/create-event/create-event.component';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { EventRouteActivatorService } from './events/shared/event-route-activator.service';
+import { ToastrService } from './common/toastr.service';
 
+import {
+  CreateEventComponent,
+  EventDetailComponent,
+  EventRouteActivatorService,
+  EventThumbnailComponent,
+  EventsListComponent,
+  EventService,
+  EventsListResolverService,
+  DurationPipe
+} from './events/index'
+
+import { AppRoutingModule } from './routes';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { AuthService } from './user/auth.service';
+import { SessionListComponent } from './events/event-detail/session-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateSessionComponent } from './events/event-detail/create-session.component';
+import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventListComponent,
+    EventsListComponent,
     EventThumbnailComponent,
     NavbarComponent,
-    EventDetailsComponent,
+    EventDetailComponent,
     CreateEventComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SessionListComponent,
+    CreateSessionComponent,
+    CollapsibleWellComponent,
+    DurationPipe,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [EventService, EventRouteActivatorService],
+  providers: [
+    EventService,
+    EventsListResolverService,
+    ToastrService, 
+    EventRouteActivatorService,
+    AuthService,
+    DurationPipe,
+    {
+      provide: 'canDeactivateCreateEvent', 
+      useValue: checkDirtyState
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function checkDirtyState(component: CreateEventComponent) {
+  if (component.isDirty) {
+    return window.confirm('You have not saved this event, do you really want to cancel?')
+  } else {
+    return true
+  }
+}
