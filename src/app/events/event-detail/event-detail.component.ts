@@ -20,6 +20,8 @@ export class EventDetailComponent implements OnInit {
 
   event: IEvent | undefined
   addMode: boolean = false
+  filterBy: string = 'all'
+  sortBy: string = 'votes'
 
   constructor(
     private eventService: EventService,
@@ -28,6 +30,14 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.event = this.eventService.getEvent(+this.route.snapshot.params['id'])
+  }
+
+  setFilter(filter: string) {
+    this.filterBy = filter
+  }
+
+  setSortBy(filter: string){
+    this.sortBy = filter
   }
 
   addSession() {
