@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
-import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
+// import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 
 import {
   CreateEventComponent,
@@ -25,6 +25,8 @@ import { CreateSessionComponent } from './events/event-detail/create-session.com
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 
 declare let toastr: Toastr
+import { JQ_TOKEN, TOASTR_TOKEN, Toastr } from './common/index'
+let jquery = (window as any)['$']
 
 @NgModule({
   declarations: [
