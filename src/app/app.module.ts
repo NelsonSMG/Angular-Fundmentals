@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
 // import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
+import { HttpClientModule } from '@angular/common/http'
+ 
 
 import {
   CreateEventComponent,
@@ -46,7 +48,8 @@ let jquery = (window as any)['$']
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     EventService,
