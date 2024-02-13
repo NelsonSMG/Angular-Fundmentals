@@ -55,7 +55,7 @@ export class EventDetailComponent implements OnInit {
       nextId = Math.max.apply(null, this.event.sessions.map( (s: ISession) => s.id ))
       session.id = nextId + 1
       this.event.sessions.push(session)
-      this.eventService.updateEvent(this.event)
+      this.eventService.saveHttpEvent(this.event).subscribe()
       this.addMode = false
     }
     
