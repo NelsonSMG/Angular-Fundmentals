@@ -10,12 +10,12 @@ import { HttpClientModule } from '@angular/common/http'
 import {
   CreateEventComponent,
   EventDetailComponent,
-  EventRouteActivatorService,
   EventThumbnailComponent,
   EventsListComponent,
   EventService,
   EventsListResolverService,
-  DurationPipe
+  DurationPipe,
+  EventResolverService
 } from './events/index'
 
 import { AppRoutingModule } from './routes';
@@ -54,11 +54,11 @@ import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-
   ],
   providers: [
     EventService,
+    EventResolverService,
     EventsListResolverService,
     // {
     //   provide: TOASTR_TOKEN, useValue: toastr
     // },
-    EventRouteActivatorService,
     AuthService,
     DurationPipe,
     {

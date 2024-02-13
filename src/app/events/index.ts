@@ -9,6 +9,7 @@ export * from './events-list/events-list.component'
 
 export * from './shared/event.service'
 export * from './shared/events-list-resolver.service'
+export * from './shared/event-resolver.service'
 export * from './shared/event.model'
 
 export * from './shared/duration.pipe'

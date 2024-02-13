@@ -17,18 +17,16 @@ export class EventService {
     .pipe(catchError(this.handleError<IEvent[]>('getHttpEvents', [])))
   }
 
-  private handleError<T> (operation = 'operation', result?: T){
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T)
-    }
-  }
-
   getEvents() :Observable<IEvent[]> {
     let subject = new Subject<IEvent[]>()
     setTimeout( ()=> { subject.next(events); subject.complete(); }, 100 )
 
     return subject
+  }
+
+  getHttpEvent(id: number):Observable<IEvent> {
+    return this.http.get<IEvent>('api/events/' + id)
+    .pipe(catchError(this.handleError<IEvent>('getHttpEvents')))
   }
 
   getEvent(id: number) {
@@ -72,6 +70,13 @@ export class EventService {
 
     return subject
 
+  }
+
+  private handleError<T> (operation = 'operation', result?: T){
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T)
+    }
   }
 
 }
