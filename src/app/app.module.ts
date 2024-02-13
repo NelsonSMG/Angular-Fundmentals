@@ -26,9 +26,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/event-detail/create-session.component';
 import { CollapsibleWellComponent } from './common/collapsible-well/collapsible-well.component';
 
-declare let toastr: Toastr
-import { JQ_TOKEN, TOASTR_TOKEN, Toastr } from './common/index'
-let jquery = (window as any)['$']
+// import { JQ_TOKEN, TOASTR_TOKEN, Toastr } from './common/index'
+// declare let toastr: Toastr
+
+// let jquery = (window as any)['$']
 
 @NgModule({
   declarations: [
@@ -54,9 +55,9 @@ let jquery = (window as any)['$']
   providers: [
     EventService,
     EventsListResolverService,
-    {
-      provide: TOASTR_TOKEN, useValue: toastr
-    },
+    // {
+    //   provide: TOASTR_TOKEN, useValue: toastr
+    // },
     EventRouteActivatorService,
     AuthService,
     DurationPipe,
